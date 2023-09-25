@@ -1,0 +1,33 @@
+<%- include('../partials/head', { title: `${user.firstName}’s Dashboard`, user
+}) -%>
+
+<h1>Hi, <%= user.firstName %>!</h1>
+
+<p>
+	<a href="/dashboard/new">create a new post</a>
+</p>
+
+<table>
+	<thead>
+		<th>Title</th>
+		<th>Content</th>
+		<th>Author</th>
+		<th>Control</th>
+	</thead>
+	<tbody>
+		<% posts.forEach((post) => { %>
+		<tr>
+			<td><%= post.title %></td>
+			<td><%= post.content %></td>
+			<td><%= post.author %></td>
+			<% if (post.user_id === user.id || user.roles.includes('ADMINS')) { %>
+			<td>
+				<a href="/api/delete-post/<%= post.id %>">delete</a>
+			</td>
+			<% } %>
+		</tr>
+		<% }) %>
+	</tbody>
+</table>
+
+<%- include('../partials/foot') -%>

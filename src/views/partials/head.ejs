@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/main.css" />
+	</head>
+	<body>
+		<header>
+			<a href="/" rel="home">BigCo Intranet</a>
+
+			<nav>
+				<a href="/docs">Docs</a>
+				<a href="/dashboard">Dashboard</a>
+				<a href="/dashboard/team">Team</a>
+
+				<% if (user) { %>
+				<a href="/auth/logout">Log Out</a>
+				<% } else { %>
+				<a href="/auth">Log In</a>
+				<% } %>
+			</nav>
+		</header>
+
+		<main>

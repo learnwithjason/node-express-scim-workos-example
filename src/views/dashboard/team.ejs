@@ -1,0 +1,26 @@
+<%- include('../partials/head', { title: 'Invite Your Teammates', user }) -%>
+
+<h1>Invite Your Teammates</h1>
+
+<table>
+	<thead>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email</th>
+		<th>Groups</th>
+		<th>Invite Link</th>
+	</thead>
+	<tbody>
+		<% teammates.forEach((teammate) => { %>
+		<tr>
+			<td><%= teammate.firstName %></td>
+			<td><%= teammate.lastName %></td>
+			<td><%= teammate.email %></td>
+			<td><%= teammate.groups %></td>
+			<td><a href="<%= teammate.inviteLink %>">invite</a></td>
+		</tr>
+		<% }) %>
+	</tbody>
+</table>
+
+<%- include('../partials/foot') -%>

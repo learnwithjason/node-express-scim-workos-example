@@ -1,0 +1,15 @@
+<%- include('../partials/head', { title: 'BigCo Intranet', user }) -%>
+
+<h1>Welcome to the BigCo Intranet</h1>
+<p>
+	Greetings, employees! You have reached the BigCo intranet, where you can find
+	details about our processes and products to help you complete your job.
+</p>
+
+<% if (user) { %>
+<h2>Since you’re logged in, you can also manage your content.</h2>
+<p>
+	You’ve got permission to manage content, <%= user.firstName %>, so
+	<a href="/dashboard">head to the dashboard</a> to do that.
+</p>
+<% } %> <%- include('../partials/foot') -%>
