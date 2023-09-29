@@ -1,7 +1,9 @@
 const Router = require('express-promise-router');
+const { WorkOS } = require('@workos-inc/node');
 const db = require('../db');
 
 const router = new Router();
+const workos = new WorkOS(process.env.WORKOS_API_KEY);
 
 // middleware to require a valid user session to view these routes
 router.use(async (req, res, next) => {
@@ -25,7 +27,24 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/team', async (req, res) => {
-	const teammates = [];
+	const users = await workos.directorySync.listUsers({
+		directory: process.env.WORKOS_DIRECTORY_ID,
+	});
+
+	const teammates = users.list.data
+		.filter((user) => {
+			return !user.emails.some((e) => e.value === req.session.user.email);
+		})
+		.map(({ id, emails, firstName, lastName, groups }) => {
+			console.log(groups);
+			return {
+				firstName,
+				lastName,
+				email: emails.at(0).value,
+				groups: groups.map((g) => g.name).join(', '),
+				inviteLink: `/api/invite/${id}`,
+			};
+		});
 
 	res.render('dashboard/team', { teammates, user: req.session.user });
 });
