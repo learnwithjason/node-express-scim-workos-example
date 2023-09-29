@@ -65,8 +65,6 @@ async function getUserRolesByEmail(email) {
 		return new Set();
 	}
 
-	console.log(userResult.rows.at(0));
-
 	return new Set(userResult.rows.at(0).roles);
 }
 

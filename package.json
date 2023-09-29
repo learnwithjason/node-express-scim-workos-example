@@ -1,6 +1,6 @@
 {
 	"engines": {
-		"node": ">18"
+		"node": ">20.6"
 	},
 	"scripts": {
 		"dev": "node --env-file=.env --watch src/index.js"

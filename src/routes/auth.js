@@ -18,15 +18,16 @@ router.get('/', (_req, res) => {
 router.get('/callback', async (req, res) => {
 	const { code } = req.query;
 
+	// get the user’s details from their identity provider
 	const { profile } = await workos.sso.getProfileAndToken({
 		code,
 		clientID: process.env.WORKOS_CLIENT_ID,
 	});
 
-	// store the user in the app database
-	const user = await db.getUserByEmail(profile.email);
-
 	req.session.user = profile;
+
+	// get the app ID and saved roles from the app DB
+	const user = await db.getUserByEmail(req.session.user.email);
 	req.session.user.id = user.id;
 	req.session.user.roles = user.roles;
 

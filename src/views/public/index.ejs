@@ -1,15 +1,25 @@
-<%- include('../partials/head', { title: 'BigCo Intranet', user }) -%>
+<%- include('../partials/head', { title: 'SnackVision', user }) -%>
 
-<h1>Welcome to the BigCo Intranet</h1>
+<h1>SnackVision, a SaaS App</h1>
 <p>
-	Greetings, employees! You have reached the BigCo intranet, where you can find
-	details about our processes and products to help you complete your job.
+	Greetings, friends! You have reached the home of SnackVision, a SaaS app that
+	lets your company identify what your customers are eating by listening to
+	their laptop, phone, and other device microphones.
+</p>
+<p>
+	Our patented SnackVision technology is highly attuned to the millions of
+	unique nums, yums, and cronches people make when they eat their favorite
+	snacks.
+</p>
+<p>
+	We provide SnackVision to companies like yours to enable you to provide highly
+	personalized content based on your users’ unique Snackiography™.
 </p>
 
 <% if (user) { %>
-<h2>Since you’re logged in, you can also manage your content.</h2>
+<h2>Manage your SnackVision insights, <%= user.firstName %>.</h2>
 <p>
-	You’ve got permission to manage content, <%= user.firstName %>, so
-	<a href="/dashboard">head to the dashboard</a> to do that.
+	Use <a href="/dashboard">your dashboard</a> to track your team’s insights into
+	your users’ snacking habits.
 </p>
 <% } %> <%- include('../partials/foot') -%>
